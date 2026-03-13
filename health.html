@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 
-<head>s
+<head>
 <title>Health Monitoring</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -39,12 +40,12 @@ let stress = document.getElementById("stress").value;
 
 if (sleep < 6 && stress == "High") {
 document.getElementById("result").innerHTML =
-"⚠️ Health Alert: Travel fatigue detected. Please rest and stay hydrated.";
+"Health Alert: Travel fatigue detected. Please rest and stay hydrated.";
 }
 
 else {
 document.getElementById("result").innerHTML =
-"✅ Health looks normal. Maintain good lifestyle habits.";
+"Health looks normal. Maintain good lifestyle habits.";
 }
 
 }
@@ -52,5 +53,4 @@ document.getElementById("result").innerHTML =
 </script>
 
 </body>
-
 </html>
