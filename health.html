@@ -1,1 +1,56 @@
+<!DOCTYPE html>
+<html>
 
+<head>
+<title>Health Monitoring</title>
+</head>
+
+<body>
+
+<h2>Health Monitoring System</h2>
+
+Sleep Hours:
+<input type="number" id="sleep"><br><br>
+
+Stress Level:
+<select id="stress">
+<option>Low</option>
+<option>Medium</option>
+<option>High</option>
+</select><br><br>
+
+Activity Level:
+<select id="activity">
+<option>Low</option>
+<option>Medium</option>
+<option>High</option>
+</select><br><br>
+
+<button onclick="checkHealth()">Check Health</button>
+
+<p id="result"></p>
+
+<script>
+
+function checkHealth() {
+
+let sleep = document.getElementById("sleep").value;
+let stress = document.getElementById("stress").value;
+
+if (sleep < 6 && stress == "High") {
+document.getElementById("result").innerHTML =
+"⚠️ Health Alert: Travel fatigue detected. Please rest and stay hydrated.";
+}
+
+else {
+document.getElementById("result").innerHTML =
+"✅ Health looks normal. Maintain good lifestyle habits.";
+}
+
+}
+
+</script>
+
+</body>
+
+</html>
