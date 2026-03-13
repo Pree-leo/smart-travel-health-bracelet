@@ -2,29 +2,10 @@
 <html>
 <head>
     <title>Travel Safety Detection</title>
-    <style>
-        body{
-            font-family: Arial;
-            text-align: center;
-            background-color: #f2f2f2;
-        }
 
-        h1{
-            color: #333;
-        }
+    <!-- Connect external CSS file -->
+    <link rel="stylesheet" href="style.css">
 
-        select, button{
-            padding: 10px;
-            margin-top: 10px;
-            font-size: 16px;
-        }
-
-        #result{
-            margin-top:20px;
-            font-size:20px;
-            font-weight:bold;
-        }
-    </style>
 </head>
 
 <body>
@@ -54,17 +35,17 @@ function checkSafety(){
     let result = document.getElementById("result");
 
     if(location == "safe"){
-        result.innerHTML = "Area is SAFE. You can travel normally.";
+        result.innerHTML = " Area is SAFE. You can travel normally.";
         result.style.color = "green";
     }
 
     else if(location == "moderate"){
-        result.innerHTML = "⚠ Moderate risk area. Stay alert.";
+        result.innerHTML = " Moderate risk area. Stay alert.";
         result.style.color = "orange";
     }
 
     else if(location == "unsafe"){
-        result.innerHTML = "🚨 HIGH RISK AREA! Share your location and avoid isolated places.";
+        result.innerHTML = " HIGH RISK AREA! Share your location and avoid isolated places.";
         result.style.color = "red";
     }
 
