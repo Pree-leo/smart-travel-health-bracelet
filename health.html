@@ -1,9 +1,9 @@
+
 <!DOCTYPE html>
 <html>
 
 <head>
 <title>Health Monitoring</title>
-<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -27,6 +27,13 @@ Activity Level:
 <option>High</option>
 </select><br><br>
 
+Health Condition:
+<select id="condition">
+<option>None</option>
+<option>PCOD</option>
+<option>PCOS</option>
+</select><br><br>
+
 <button onclick="checkHealth()">Check Health</button>
 
 <p id="result"></p>
@@ -37,19 +44,30 @@ function checkHealth() {
 
 let sleep = document.getElementById("sleep").value;
 let stress = document.getElementById("stress").value;
+let condition = document.getElementById("condition").value;
 
 if (sleep < 6 && stress == "High") {
 document.getElementById("result").innerHTML =
-"Health Alert: Travel fatigue detected. Please rest and stay hydrated.";
+"⚠️ Health Alert: Lack of sleep and high stress detected. Please rest and stay hydrated.";
+}
+
+else if (condition == "PCOD" || condition == "PCOS") {
+document.getElementById("result").innerHTML =
+"⚠️ Health Advice: Maintain balanced diet, exercise regularly, and manage stress for PCOD/PCOS.";
 }
 
 else {
 document.getElementById("result").innerHTML =
-"Health looks normal. Maintain good lifestyle habits.";
+"✅ Health looks normal. Maintain good lifestyle habits.";
 }
 
 }
 
+</script>
+
+</body>
+
+</html>
 </script>
 
 </body>
