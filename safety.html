@@ -1,1 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Travel Safety Detection</title>
+    <style>
+        body{
+            font-family: Arial;
+            text-align: center;
+            background-color: #f2f2f2;
+        }
 
+        h1{
+            color: #333;
+        }
+
+        select, button{
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        #result{
+            margin-top:20px;
+            font-size:20px;
+            font-weight:bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Travel Safety Detection</h1>
+
+<p>Select your travel location:</p>
+
+<select id="location">
+    <option value="">--Select Location--</option>
+    <option value="safe">Area A</option>
+    <option value="moderate">Area B</option>
+    <option value="unsafe">Area C</option>
+</select>
+
+<br><br>
+
+<button onclick="checkSafety()">Check Safety</button>
+
+<p id="result"></p>
+
+<script>
+
+function checkSafety(){
+
+    let location = document.getElementById("location").value;
+    let result = document.getElementById("result");
+
+    if(location == "safe"){
+        result.innerHTML = "✅ Area is SAFE. You can travel normally.";
+        result.style.color = "green";
+    }
+
+    else if(location == "moderate"){
+        result.innerHTML = "⚠ Moderate risk area. Stay alert.";
+        result.style.color = "orange";
+    }
+
+    else if(location == "unsafe"){
+        result.innerHTML = "🚨 HIGH RISK AREA! Share your location and avoid isolated places.";
+        result.style.color = "red";
+    }
+
+    else{
+        result.innerHTML = "Please select a location.";
+        result.style.color = "black";
+    }
+
+}
+
+</script>
+
+</body>
+</html>
