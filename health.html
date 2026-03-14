@@ -1,128 +1,29 @@
+<div class="card">
 
-<!DOCTYPE html>
-<html>
-<head>
-<title>Women's Health Monitor</title>
-
-<style>
-body{
-font-family: Arial;
-background:#f4f4f4;
-padding:20px;
-}
-
-.container{
-background:white;
-padding:20px;
-border-radius:10px;
-width:350px;
-box-shadow:0 0 10px gray;
-}
-
-button{
-background:#ff4d6d;
-color:white;
-border:none;
-padding:10px;
-border-radius:5px;
-cursor:pointer;
-}
-
-.result{
-margin-top:15px;
-font-weight:bold;
-}
-
-.reminder{
-color:#d6336c;
-font-weight:bold;
-}
-</style>
-
-</head>
-
-<body>
-
-<div class="container">
-
-<h2>Women's Health Monitoring</h2>
+<h2>Health Monitoring System</h2>
 
 Sleep Hours:
 <input type="number" id="sleep"><br><br>
 
+Calories Intake (kcal):
+<input type="number" id="calories"><br><br>
+
 Stress Level:
 <select id="stress">
-<option value="low">Low</option>
-<option value="medium">Medium</option>
-<option value="high">High</option>
+<option>Low</option>
+<option>Medium</option>
+<option>High</option>
 </select><br><br>
 
-Menstrual Cycle Length (days):
-<input type="number" id="cycle"><br><br>
+Body Temperature (°C):
+<input type="number" id="temp"><br><br>
 
-Last Period Date:
-<input type="date" id="period"><br><br>
+Current Location:
+<input type="text" id="location" placeholder="Enter area"><br><br>
 
-<button onclick="checkHealth()">Check Health</button>
+<button onclick="analyzeHealth()">Analyze Health</button>
 
-<div class="result" id="result"></div>
-<div class="reminder" id="reminder"></div>
+<p id="healthResult"></p>
+<p id="doctorResult"></p>
 
 </div>
-
-<script>
-
-function checkHealth(){
-
-let sleep = document.getElementById("sleep").value;
-let stress = document.getElementById("stress").value;
-let cycle = document.getElementById("cycle").value;
-let periodDate = document.getElementById("period").value;
-
-let message="";
-
-if(sleep < 6 && stress == "high" && (cycle < 21 || cycle > 35)){
-
-message = "⚠ Possible PCOD/PCOS Risk Indicators:<br>"
-+ "- Irregular periods<br>"
-+ "- Hormonal imbalance<br>"
-+ "- Acne or hair fall<br>"
-+ "- Weight gain<br><br>"
-+ "Suggestion: Improve sleep, manage stress, and consult a doctor if symptoms persist.";
-
-}
-
-else{
-
-message = "✔ Your inputs do not strongly indicate PCOD/PCOS risk. Maintain healthy lifestyle.";
-
-}
-
-document.getElementById("result").innerHTML = message;
-
-
-// Breast Self Examination Reminder
-
-if(periodDate){
-
-let period = new Date(periodDate);
-let reminderStart = new Date(period);
-reminderStart.setDate(period.getDate() + 5);
-
-let reminderEnd = new Date(period);
-reminderEnd.setDate(period.getDate() + 7);
-
-document.getElementById("reminder").innerHTML =
-"🔔 Breast Self-Examination Reminder: Perform between "
-+ reminderStart.toDateString()
-+ " and "
-+ reminderEnd.toDateString();
-
-}
-
-}
-
-</script>
-
-</body>
-</html>
