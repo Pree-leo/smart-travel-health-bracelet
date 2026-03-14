@@ -78,16 +78,32 @@ function analyzeHealth(){
 
 let sleep = document.getElementById("sleep").value;
 let stress = document.getElementById("stress").value;
+let temp = document.getElementById("temp").value;
 
+let healthMsg = "";
+let doctorMsg = "";
+
+// HEALTH ANALYSIS
 if(sleep < 6 && stress == "High"){
-document.getElementById("healthResult").innerHTML =
-"⚠ High stress and low sleep detected. Possible hormonal imbalance risk.";
-}
-else{
-document.getElementById("healthResult").innerHTML =
-"✔ Health indicators look stable.";
+healthMsg = "⚠ High stress and low sleep detected. Possible hormonal imbalance risk.";
+doctorMsg = "👩‍⚕ Recommended doctor: Gynecologist or Endocrinologist.";
 }
 
+else if(temp > 38){
+healthMsg = "⚠ High body temperature detected.";
+doctorMsg = "👨‍⚕ Recommended doctor: General Physician.";
+}
+
+else{
+healthMsg = "✔ Health indicators look stable.";
+doctorMsg = "No doctor consultation required currently.";
+}
+
+document.getElementById("healthResult").innerHTML = healthMsg;
+document.getElementById("doctorResult").innerHTML = doctorMsg;
+
+
+// MENSTRUAL REMINDERS
 let periodInput = document.getElementById("periodDate").value;
 
 if(periodInput){
