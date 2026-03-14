@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Travel Safety Detection</title>
+<title>Travel Safety Detection</title>
 
-    <!-- Connect external CSS file -->
-    <link rel="stylesheet" href="style.css">
+<!-- Connect external CSS file -->
+<link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -12,13 +12,14 @@
 
 <h1>Travel Safety Detection</h1>
 
+<!-- Location Safety Check -->
 <p>Select your travel location:</p>
 
 <select id="location">
-    <option value="">--Select Location--</option>
-    <option value="safe">Area A</option>
-    <option value="moderate">Area B</option>
-    <option value="unsafe">Area C</option>
+<option value="">--Select Location--</option>
+<option value="safe">Area A</option>
+<option value="moderate">Area B</option>
+<option value="unsafe">Area C</option>
 </select>
 
 <br><br>
@@ -27,32 +28,97 @@
 
 <p id="result"></p>
 
+<hr>
+
+<!-- Live Location Feature -->
+
+<h2>Live Location</h2>
+
+<button onclick="getLocation()">Detect My Location</button>
+
+<p id="liveLocation"></p>
+
+<hr>
+
+<!-- Phone Misplaced Alarm -->
+
+<h2>Phone Safety Feature</h2>
+
+<p>If your phone is misplaced, activate the alarm:</p>
+
+<button onclick="triggerAlarm()">Activate Alarm</button>
+<button onclick="stopAlarm()">Stop Alarm</button>
+
+<audio id="alarmSound">
+<source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" type="audio/mpeg">
+</audio>
+
 <script>
 
 function checkSafety(){
 
-    let location = document.getElementById("location").value;
-    let result = document.getElementById("result");
+let location = document.getElementById("location").value;
+let result = document.getElementById("result");
 
-    if(location == "safe"){
-        result.innerHTML = " Area is SAFE. You can travel normally.";
-        result.style.color = "green";
-    }
+if(location == "safe"){
+result.innerHTML = "✅ Area is SAFE. You can travel normally.";
+result.style.color = "green";
+}
 
-    else if(location == "moderate"){
-        result.innerHTML = " Moderate risk area. Stay alert.";
-        result.style.color = "orange";
-    }
+else if(location == "moderate"){
+result.innerHTML = "⚠ Moderate risk area. Stay alert.";
+result.style.color = "orange";
+}
 
-    else if(location == "unsafe"){
-        result.innerHTML = " HIGH RISK AREA! Share your location and avoid isolated places.";
-        result.style.color = "red";
-    }
+else if(location == "unsafe"){
+result.innerHTML = "🚨 HIGH RISK AREA! Share your location and avoid isolated places.";
+result.style.color = "red";
+}
 
-    else{
-        result.innerHTML = "Please select a location.";
-        result.style.color = "black";
-    }
+else{
+result.innerHTML = "Please select a location.";
+result.style.color = "black";
+}
+
+}
+
+
+function getLocation(){
+
+let locationText = document.getElementById("liveLocation");
+
+if(navigator.geolocation){
+
+navigator.geolocation.getCurrentPosition(function(position){
+
+locationText.innerHTML =
+"Latitude: " + position.coords.latitude +
+"<br>Longitude: " + position.coords.longitude;
+
+});
+
+}
+else{
+locationText.innerHTML = "Geolocation is not supported by this browser.";
+}
+
+}
+
+
+function triggerAlarm(){
+
+let alarm = document.getElementById("alarmSound");
+alarm.play();
+
+alert("Phone Misplaced! Alarm Activated.");
+
+}
+
+function stopAlarm(){
+
+let alarm = document.getElementById("alarmSound");
+alarm.pause();
+alarm.currentTime = 0;
 
 }
 
