@@ -53,4 +53,55 @@ button:hover{
 
 a{
     text-decoration: none;
+}body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#e8f5e9,#e0f7fa);
+    margin:0;
+    padding:0;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.health-box{
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.1);
+    width:380px;
+}
+
+h1{
+    text-align:center;
+    color:#2e7d32;
+}
+
+label{
+    font-weight:bold;
+}
+
+input, select{
+    width:100%;
+    padding:8px;
+    margin-top:5px;
+    margin-bottom:15px;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+
+button{
+    width:100%;
+    background:#26a69a;
+    color:white;
+    border:none;
+    padding:10px;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#00897b;
 }
