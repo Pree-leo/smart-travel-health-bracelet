@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Health Monitoring System</title>
+</head>
+
+<body>
+
 <div class="card">
 
 <h2>Health Monitoring System</h2>
@@ -21,9 +29,66 @@ Body Temperature (°C):
 Current Location:
 <input type="text" id="location" placeholder="Enter area"><br><br>
 
+<!-- NEW MENSTRUAL INPUT -->
+Last Menstrual Date:
+<input type="date" id="periodDate"><br><br>
+
 <button onclick="analyzeHealth()">Analyze Health</button>
 
 <p id="healthResult"></p>
 <p id="doctorResult"></p>
+<p id="periodReminder"></p>
+<p id="breastReminder"></p>
 
 </div>
+
+<script>
+
+function analyzeHealth(){
+
+let sleep = document.getElementById("sleep").value;
+let stress = document.getElementById("stress").value;
+
+if(sleep < 6 && stress == "High"){
+document.getElementById("healthResult").innerHTML =
+"⚠ High stress and low sleep detected. Possible hormonal imbalance risk.";
+}
+else{
+document.getElementById("healthResult").innerHTML =
+"✔ Health indicators look stable.";
+}
+
+// MENSTRUAL REMINDERS
+let periodInput = document.getElementById("periodDate").value;
+
+if(periodInput){
+
+let period = new Date(periodInput);
+
+// next cycle assumed 28 days
+let nextPeriod = new Date(period);
+nextPeriod.setDate(period.getDate() + 28);
+
+// reminder 1 week before next period
+let weekBefore = new Date(nextPeriod);
+weekBefore.setDate(nextPeriod.getDate() - 7);
+
+document.getElementById("periodReminder").innerHTML =
+"🔔 Reminder: Your next period may start around " + nextPeriod.toDateString() +
+". Notification from " + weekBefore.toDateString();
+
+// breast self exam reminder (5 days after period)
+let breastExam = new Date(period);
+breastExam.setDate(period.getDate() + 5);
+
+document.getElementById("breastReminder").innerHTML =
+"🎗 Breast Self-Examination Reminder: Around " + breastExam.toDateString();
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
