@@ -2,6 +2,37 @@
 <html>
 <head>
 <title>Health Monitoring System</title>
+
+<style>
+
+body{
+font-family: Arial;
+background:#f4f4f4;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 0 10px gray;
+width:320px;
+}
+
+button{
+padding:8px 15px;
+background:#ff4d6d;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+</style>
+
 </head>
 
 <body>
@@ -29,7 +60,6 @@ Body Temperature (°C):
 Current Location:
 <input type="text" id="location" placeholder="Enter area"><br><br>
 
-<!-- NEW MENSTRUAL INPUT -->
 Last Menstrual Date:
 <input type="date" id="periodDate"><br><br>
 
@@ -58,18 +88,15 @@ document.getElementById("healthResult").innerHTML =
 "✔ Health indicators look stable.";
 }
 
-// MENSTRUAL REMINDERS
 let periodInput = document.getElementById("periodDate").value;
 
 if(periodInput){
 
 let period = new Date(periodInput);
 
-// next cycle assumed 28 days
 let nextPeriod = new Date(period);
 nextPeriod.setDate(period.getDate() + 28);
 
-// reminder 1 week before next period
 let weekBefore = new Date(nextPeriod);
 weekBefore.setDate(nextPeriod.getDate() - 7);
 
@@ -77,7 +104,6 @@ document.getElementById("periodReminder").innerHTML =
 "🔔 Reminder: Your next period may start around " + nextPeriod.toDateString() +
 ". Notification from " + weekBefore.toDateString();
 
-// breast self exam reminder (5 days after period)
 let breastExam = new Date(period);
 breastExam.setDate(period.getDate() + 5);
 
