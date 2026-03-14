@@ -1,15 +1,16 @@
 body{
     font-family: Arial, sans-serif;
-    background-color: #e8f5e9; /* light health green background */
+    background: linear-gradient(135deg, #fce4ec, #e0f7fa);
     margin: 0;
     padding: 0;
     text-align: center;
 }
 
 header{
-    background-color: #2e7d32; /* dark health green */
+    background-color: #ad1457;
     color: white;
     padding: 20px;
+    letter-spacing: 1px;
 }
 
 h1{
@@ -17,26 +18,37 @@ h1{
 }
 
 .container{
-    margin-top: 40px;
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
-    align-items: center;   /* center horizontally */
+    align-items: center;
     justify-content: center;
 }
 
+.card{
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    width: 320px;
+    margin-bottom: 20px;
+}
+
 button{
-    background-color: #4caf50; /* main green button */
+    background-color: #00897b;
     color: white;
     border: none;
-    padding: 12px 20px;
+    padding: 12px 22px;
     font-size: 16px;
     margin: 10px;
-    border-radius: 6px;
+    border-radius: 25px;
     cursor: pointer;
+    transition: 0.3s;
 }
 
 button:hover{
-    background-color: #388e3c; /* darker hover */
+    background-color: #00695c;
+    transform: scale(1.05);
 }
 
 a{
