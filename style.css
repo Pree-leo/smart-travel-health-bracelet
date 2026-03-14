@@ -77,7 +77,14 @@ a{
     cursor:pointer;
     transition:0.3s;
 }
-
+.bracelet-img{
+width:450px;
+max-width:90%;
+display:block;
+margin:20px auto;
+border-radius:12px;
+box-shadow:0 6px 20px rgba(0,0,0,0.2);
+}
 .sos-btn:hover{
     background-color:#ff0000;
     transform:scale(1.05);
