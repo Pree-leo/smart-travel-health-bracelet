@@ -113,3 +113,26 @@ font-size:16px;
 line-height:1.5;
 color:#333;
 }
+.grid-container{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:30px;
+max-width:900px;
+margin:40px auto;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 8px 20px rgba(0,0,0,0.1);
+text-align:center;
+}
+
+.about-img{
+width:100%;
+max-width:350px;
+margin:auto;
+display:block;
+border-radius:10px;
+}
