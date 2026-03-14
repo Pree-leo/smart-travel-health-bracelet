@@ -2,63 +2,203 @@
 <html>
 
 <head>
-<title>About the Product</title>
-<link rel="stylesheet" href="style.css">
+<title>Health Monitoring System</title>
+
+<style>
+
+body{
+font-family: Arial, sans-serif;
+background: linear-gradient(135deg,#fde4ec,#e0f7fa);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+width:400px;
+text-align:left;
+}
+
+h2{
+text-align:center;
+color:#ad1457;
+margin-bottom:20px;
+}
+
+label{
+font-weight:bold;
+}
+
+input, select{
+width:100%;
+padding:8px;
+margin-top:5px;
+margin-bottom:15px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+button{
+width:100%;
+padding:12px;
+background:#ff4d6d;
+color:white;
+border:none;
+border-radius:8px;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+background:#d62839;
+transform:scale(1.05);
+}
+
+.result{
+margin-top:15px;
+font-weight:bold;
+}
+
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>Smart Travel Health & Safety Bracelet</h1>
-</header>
-
-<nav>
-<a href="index.html">Home</a> |
-<a href="health.html">Health Monitoring</a> |
-<a href="safety.html">Travel Safety</a> |
-<a href="sos.html">SOS Emergency</a> |
-<a href="about.html">About Product</a>
-</nav>
-
-<div class="grid-container">
-
 <div class="card">
-<h2>About the Product</h2>
-<p>
-The Smart Travel Health & Safety Bracelet is a wearable system designed to enhance safety and health monitoring during travel. 
-It integrates multiple sensors and communication modules that collect physiological and location data from the user.
-</p>
 
-<p>
-The system analyzes this information to detect health risks and identify potentially unsafe travel zones, 
-while also providing an emergency SOS response mechanism.
-</p>
-</div>
+<h2>Health Monitoring System</h2>
 
-<div class="card">
-<h2>Product Design</h2>
-<img src="bracelet.jpeg" class="about-img" alt="Smart Bracelet Model">
+<label>Sleep Hours</label>
+<input type="number" id="sleep">
 
-<p>
-The bracelet contains embedded sensors and communication components that allow it to track activity, stress levels, body temperature, and location.
-</p>
-</div>
+<label>Calories Intake (kcal)</label>
+<input type="number" id="calories">
 
-<div class="card">
-<h2>Health Sensors</h2>
-<p>
-Tracks heart rate, stress level, sleep patterns and body temperature.
-</p>
-</div>
+<label>Stress Level</label>
+<select id="stress">
+<option>Low</option>
+<option>Medium</option>
+<option>High</option>
+</select>
 
-<div class="card">
-<h2>Safety Features</h2>
-<p>
-Includes emergency SOS alert system and unsafe zone detection.
-</p>
-</div>
+<label>Body Temperature (°C)</label>
+<input type="number" id="temp">
+
+<label>Current Location</label>
+<input type="text" id="location" placeholder="Enter area">
+
+<label>Last Menstrual Date</label>
+<input type="date" id="periodDate">
+
+<button onclick="analyzeHealth()">Analyze Health</button>
+
+<p class="result" id="healthResult"></p>
+<p class="result" id="doctorResult"></p>
+<p class="result" id="periodReminder"></p>
+<p class="result" id="breastReminder"></p>
 
 </div>
+
+<script>
+
+// When page loads, check if period date is already saved
+window.onload = function(){
+
+let savedDate = localStorage.getItem("periodDate");
+
+if(savedDate){
+
+let saved = new Date(savedDate);
+let today = new Date();
+
+let nextAllowed = new Date(saved);
+nextAllowed.setDate(saved.getDate() + 28);
+
+// If still within cycle, auto fill and lock input
+if(today < nextAllowed){
+document.getElementById("periodDate").value = savedDate;
+document.getElementById("periodDate").disabled = true;
+}
+
+}
+
+}
+
+
+function analyzeHealth(){
+
+let sleep = document.getElementById("sleep").value;
+let stress = document.getElementById("stress").value;
+let temp = document.getElementById("temp").value;
+
+let healthMsg = "";
+let doctorMsg = "";
+
+// Health analysis
+
+if(sleep < 6 && stress == "High"){
+healthMsg = "High stress and low sleep detected. Possible hormonal imbalance risk.";
+doctorMsg = "Recommended doctor: Gynecologist or Endocrinologist.";
+}
+
+else if(temp > 38){
+healthMsg = "High body temperature detected.";
+doctorMsg = "Recommended doctor: General Physician.";
+}
+
+else{
+healthMsg = "Health indicators look stable.";
+doctorMsg = "No doctor consultation required currently.";
+}
+
+document.getElementById("healthResult").innerHTML = healthMsg;
+document.getElementById("doctorResult").innerHTML = doctorMsg;
+
+
+// Period tracking
+
+let periodInput = document.getElementById("periodDate").value;
+
+if(periodInput){
+
+// Save period date
+localStorage.setItem("periodDate", periodInput);
+
+let period = new Date(periodInput);
+
+let nextPeriod = new Date(period);
+nextPeriod.setDate(period.getDate() + 28);
+
+let weekBefore = new Date(nextPeriod);
+weekBefore.setDate(nextPeriod.getDate() - 7);
+
+document.getElementById("periodReminder").innerHTML =
+"Reminder: Your next period may start around " + nextPeriod.toDateString() +
+". Notification from " + weekBefore.toDateString();
+
+
+// Breast self examination reminder
+
+let breastExam = new Date(period);
+breastExam.setDate(period.getDate() + 5);
+
+document.getElementById("breastReminder").innerHTML =
+"Breast Self Examination Reminder: Around " + breastExam.toDateString();
+
+}
+
+}
+
+</script>
 
 </body>
+
 </html>
