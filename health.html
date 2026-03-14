@@ -108,8 +108,6 @@ font-weight:bold;
 </div>
 
 <script>
-
-// When page loads, check if period date is already saved
 window.onload = function(){
 
 let savedDate = localStorage.getItem("periodDate");
@@ -122,7 +120,6 @@ let today = new Date();
 let nextAllowed = new Date(saved);
 nextAllowed.setDate(saved.getDate() + 28);
 
-// If still within cycle, auto fill and lock input
 if(today < nextAllowed){
 document.getElementById("periodDate").value = savedDate;
 document.getElementById("periodDate").disabled = true;
@@ -142,7 +139,6 @@ let temp = document.getElementById("temp").value;
 let healthMsg = "";
 let doctorMsg = "";
 
-// Health analysis
 
 if(sleep < 6 && stress == "High"){
 healthMsg = "High stress and low sleep detected. Possible hormonal imbalance leading PCOD or PCOS risk.";
@@ -164,13 +160,10 @@ document.getElementById("healthResult").innerHTML = healthMsg;
 document.getElementById("doctorResult").innerHTML = doctorMsg;
 
 
-// Period tracking
-
 let periodInput = document.getElementById("periodDate").value;
 
 if(periodInput){
 
-// Save period date
 localStorage.setItem("periodDate", periodInput);
 
 let period = new Date(periodInput);
@@ -185,8 +178,6 @@ document.getElementById("periodReminder").innerHTML =
 "Reminder: Your next period may start around " + nextPeriod.toDateString() +
 ". Notification from " + weekBefore.toDateString();
 
-
-// Breast self examination reminder
 
 let breastExam = new Date(period);
 breastExam.setDate(period.getDate() + 5);
