@@ -50,6 +50,18 @@ button:hover{
     background-color: #00695c;
     transform: scale(1.05);
 }
+.device-section{
+    text-align:center;
+    margin-top:40px;
+}
+
+.device-img{
+    width:450px;
+    max-width:90%;
+    border-radius:12px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.2);
+    margin-top:20px;
+}
 
 a{
     text-decoration: none;
