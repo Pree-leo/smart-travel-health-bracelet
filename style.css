@@ -66,3 +66,19 @@ button:hover{
 a{
     text-decoration: none;
 }
+.sos-btn{
+    background-color:#d32f2f;
+    color:white;
+    border:none;
+    padding:14px 25px;
+    font-size:18px;
+    margin-top:20px;
+    border-radius:8px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.sos-btn:hover{
+    background-color:#b71c1c;
+    transform:scale(1.05);
+}
