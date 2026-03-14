@@ -1,34 +1,69 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 <title>Health Monitoring System</title>
 
 <style>
 
 body{
-font-family: Arial;
-background:#f4f4f4;
+font-family: Arial, sans-serif;
+background: linear-gradient(135deg,#fde4ec,#e0f7fa);
 display:flex;
 justify-content:center;
 align-items:center;
 height:100vh;
+margin:0;
 }
 
 .card{
 background:white;
-padding:25px;
-border-radius:10px;
-box-shadow:0 0 10px gray;
-width:320px;
+padding:30px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+width:400px;
+text-align:left;
+}
+
+h2{
+text-align:center;
+color:#ad1457;
+margin-bottom:20px;
+}
+
+label{
+font-weight:bold;
+}
+
+input, select{
+width:100%;
+padding:8px;
+margin-top:5px;
+margin-bottom:15px;
+border-radius:6px;
+border:1px solid #ccc;
 }
 
 button{
-padding:8px 15px;
+width:100%;
+padding:12px;
 background:#ff4d6d;
 color:white;
 border:none;
-border-radius:5px;
+border-radius:8px;
+font-size:16px;
 cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+background:#d62839;
+transform:scale(1.05);
+}
+
+.result{
+margin-top:15px;
+font-weight:bold;
 }
 
 </style>
@@ -41,34 +76,34 @@ cursor:pointer;
 
 <h2>Health Monitoring System</h2>
 
-Sleep Hours:
-<input type="number" id="sleep"><br><br>
+<label>Sleep Hours</label>
+<input type="number" id="sleep">
 
-Calories Intake (kcal):
-<input type="number" id="calories"><br><br>
+<label>Calories Intake (kcal)</label>
+<input type="number" id="calories">
 
-Stress Level:
+<label>Stress Level</label>
 <select id="stress">
 <option>Low</option>
 <option>Medium</option>
 <option>High</option>
-</select><br><br>
+</select>
 
-Body Temperature (°C):
-<input type="number" id="temp"><br><br>
+<label>Body Temperature (°C)</label>
+<input type="number" id="temp">
 
-Current Location:
-<input type="text" id="location" placeholder="Enter area"><br><br>
+<label>Current Location</label>
+<input type="text" id="location" placeholder="Enter area">
 
-Last Menstrual Date:
-<input type="date" id="periodDate"><br><br>
+<label>Last Menstrual Date</label>
+<input type="date" id="periodDate">
 
 <button onclick="analyzeHealth()">Analyze Health</button>
 
-<p id="healthResult"></p>
-<p id="doctorResult"></p>
-<p id="periodReminder"></p>
-<p id="breastReminder"></p>
+<p class="result" id="healthResult"></p>
+<p class="result" id="doctorResult"></p>
+<p class="result" id="periodReminder"></p>
+<p class="result" id="breastReminder"></p>
 
 </div>
 
@@ -83,27 +118,24 @@ let temp = document.getElementById("temp").value;
 let healthMsg = "";
 let doctorMsg = "";
 
-// HEALTH ANALYSIS
 if(sleep < 6 && stress == "High"){
-healthMsg = "⚠ High stress and low sleep detected. Possible hormonal imbalance risk.";
-doctorMsg = "👩‍⚕ Recommended doctor: Gynecologist or Endocrinologist.";
+healthMsg = "High stress and low sleep detected. Possible hormonal imbalance risk.";
+doctorMsg = "Recommended doctor: Gynecologist or Endocrinologist.";
 }
 
 else if(temp > 38){
-healthMsg = "⚠ High body temperature detected.";
-doctorMsg = "👨‍⚕ Recommended doctor: General Physician.";
+healthMsg = "High body temperature detected.";
+doctorMsg = "Recommended doctor: General Physician.";
 }
 
 else{
-healthMsg = "✔ Health indicators look stable.";
+healthMsg = "Health indicators look stable.";
 doctorMsg = "No doctor consultation required currently.";
 }
 
 document.getElementById("healthResult").innerHTML = healthMsg;
 document.getElementById("doctorResult").innerHTML = doctorMsg;
 
-
-// MENSTRUAL REMINDERS
 let periodInput = document.getElementById("periodDate").value;
 
 if(periodInput){
@@ -117,14 +149,14 @@ let weekBefore = new Date(nextPeriod);
 weekBefore.setDate(nextPeriod.getDate() - 7);
 
 document.getElementById("periodReminder").innerHTML =
-"🔔 Reminder: Your next period may start around " + nextPeriod.toDateString() +
+"Reminder: Your next period may start around " + nextPeriod.toDateString() +
 ". Notification from " + weekBefore.toDateString();
 
 let breastExam = new Date(period);
 breastExam.setDate(period.getDate() + 5);
 
 document.getElementById("breastReminder").innerHTML =
-"🎗 Breast Self-Examination Reminder: Around " + breastExam.toDateString();
+"Breast Self Examination Reminder: Around " + breastExam.toDateString();
 
 }
 
@@ -133,4 +165,5 @@ document.getElementById("breastReminder").innerHTML =
 </script>
 
 </body>
+
 </html>
